@@ -6,7 +6,7 @@
 #include <cstdio>
 #include <iterator>
 
-namespace loveka::components::utils {
+namespace xitren::circular_buffer {
 
 template <typename T, size_t Size>
 class circular_buffer;

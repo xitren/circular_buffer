@@ -11,12 +11,6 @@ target_link_libraries(GTest::GTest INTERFACE gtest_main)
 
 include(GoogleTest)
 
-FetchContent_Declare(
-        extern_spdlog
-        GIT_REPOSITORY https://github.com/gabime/spdlog.git
-        GIT_TAG        v1.8.2)
-FetchContent_MakeAvailable(extern_spdlog)
-
 file(GLOB TESTS *.cpp)
 
 foreach (file ${TESTS})
