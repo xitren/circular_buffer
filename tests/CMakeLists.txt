@@ -26,7 +26,6 @@ foreach (file ${TESTS})
     target_compile_features(${tgt} PUBLIC cxx_std_20)
     target_compile_options(${tgt} PRIVATE -Wall -Wextra -Wpedantic -Wc++20-compat -Wno-format-security
             -Woverloaded-virtual -Wsuggest-override)
-    target_link_libraries(${tgt} PRIVATE ${LIBRARY_NAME} spdlog::spdlog_header_only
-            GTest::gtest GTest::GTest -pthread)
+    target_link_libraries(${tgt} PRIVATE ${LIBRARY_NAME} GTest::gtest GTest::GTest -pthread)
     gtest_discover_tests(${tgt} WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 endforeach ()
