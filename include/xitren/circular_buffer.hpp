@@ -6,7 +6,7 @@
 #include <cstdio>
 #include <iterator>
 
-namespace xitren::circular_buffer {
+namespace xitren::containers {
 
 template <typename T, size_t Size>
 class circular_buffer;
@@ -59,7 +59,7 @@ public:
     inline bool
     operator!=(circular_buffer_iterator const& rhs) const
     {
-        return !(*this == rhs); // NO LINT
+        return !(*this == rhs);    // NO LINT
     }
 
     inline bool
@@ -93,7 +93,7 @@ public:
         return *this;
     }
 
-    inline const circular_buffer_iterator
+    inline circular_buffer_iterator const
     operator++(int)
     {
         circular_buffer_iterator tmp{*this};
@@ -108,7 +108,7 @@ public:
         return *this;
     }
 
-    inline const circular_buffer_iterator
+    inline circular_buffer_iterator const
     operator--(int)
     {
         circular_buffer_iterator tmp{*this};
@@ -362,6 +362,7 @@ public:
     {
         return &(data(0));
     }
+
     inline constexpr size_type
     storage_size_in_bytes() const noexcept
     {
@@ -371,9 +372,9 @@ public:
     void
     update_head(size_type head_next) noexcept
     {
-        const size_type tail  = tail_ % Size;
+        size_type const tail  = tail_ % Size;
         head_next             = head_next % Size;
-        const std::size_t inc = (tail > head_next) ? (Size - tail + head_next) : (head_next - tail);
+        std::size_t const inc = (tail > head_next) ? (Size - tail + head_next) : (head_next - tail);
         size_ += inc;
         tail_ += inc;
         size_ = std::min(size_, Size);
@@ -411,7 +412,7 @@ private:
 
 template <typename T, size_t Size, std::ranges::common_range Array>
 circular_buffer<T, Size>&
-operator<<(circular_buffer<T, Size>& buffer, const Array& in_data)
+operator<<(circular_buffer<T, Size>& buffer, Array const& in_data)
 {
     for (auto& item : in_data) {
         buffer.push(item);
@@ -423,7 +424,7 @@ template <typename T, size_t Size>
 circular_buffer<T, Size>&
 operator>>(circular_buffer<T, Size>& buffer, std::size_t size)
 {
-    const auto end{buffer.begin() + size};
+    auto const end{buffer.begin() + size};
     for (auto iter{buffer.begin()}; iter < end; ++iter) {
         buffer.pop();
     }
@@ -445,7 +446,7 @@ operator>>(circular_buffer<T, Size>& buffer, Array& out_data)
 
 template <typename T, size_t Size, std::ranges::common_range Array>
 bool
-operator==(const circular_buffer<T, Size>& buffer, const Array& in_data)
+operator==(circular_buffer<T, Size> const& buffer, Array const& in_data)
 {
     bool res;
     auto iter{buffer.begin()};
@@ -455,4 +456,4 @@ operator==(const circular_buffer<T, Size>& buffer, const Array& in_data)
     return res;
 }
 
-}    // namespace loveka::components::utils
+}    // namespace xitren::containers
