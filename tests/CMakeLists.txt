@@ -18,8 +18,10 @@ foreach (file ${TESTS})
     message(STATUS "Adding test \"${tgt}\"")
     add_executable(${tgt} ${file})
     target_compile_features(${tgt} PUBLIC cxx_std_20)
-    target_compile_options(${tgt} PRIVATE -Wall -Wextra -Wpedantic -Wc++20-compat -Wno-format-security
-            -Woverloaded-virtual -Wsuggest-override)
+    if (NOT ${CMAKE_HOST_SYSTEM_NAME} MATCHES "Windows")
+        target_compile_options(${tgt} PRIVATE -Wall -Wextra -Wpedantic -Wc++20-compat -Wno-format-security
+                -Woverloaded-virtual -Wsuggest-override)
+    endif ()
     target_link_libraries(${tgt} PRIVATE ${LIBRARY_NAME} GTest::gtest GTest::GTest -pthread)
     gtest_discover_tests(${tgt} WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 endforeach ()
