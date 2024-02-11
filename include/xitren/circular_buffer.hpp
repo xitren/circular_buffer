@@ -20,7 +20,7 @@ class circular_buffer;
 \brief Circular buffer iterator
 */
 template <typename T, typename ValueType = typename T::value_type>
-struct circular_buffer_iterator {
+class circular_buffer_iterator {
 public:
     using buffer_type = T;
 
@@ -177,7 +177,7 @@ private:
 };
 
 template <typename T, size_t Size>
-struct circular_buffer {
+class circular_buffer {
 public:
     using value_type      = T;
     using pointer         = value_type*;
