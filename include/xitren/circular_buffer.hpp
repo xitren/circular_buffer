@@ -8,9 +8,17 @@
 
 namespace xitren::containers {
 
+/*!
+\brief Circular buffer
+Circular buffer, circular queue, cyclic buffer or ring buffer is a data structure that uses a single, fixed-size buffer
+as if it were connected end-to-end. This structure lends itself easily to buffering data streams.
+*/
 template <typename T, size_t Size>
 class circular_buffer;
 
+/*!
+\brief Circular buffer iterator
+*/
 template <typename T, typename ValueType = typename T::value_type>
 struct circular_buffer_iterator {
 public:
@@ -24,6 +32,11 @@ public:
     using size_type       = typename T::size_type;
     using difference_type = typename T::difference_type;
 
+    /**
+     * \brief           Buffer iterator constructor
+     * \param[in]       buf: Buffer pointer
+     * \param[in]       pos: Start position
+     */
     circular_buffer_iterator(buffer_type* buf, size_type pos) : buf_{buf}, pos_{pos} {}
 
     inline reference
@@ -345,12 +358,20 @@ public:
         return const_reverse_iterator{this, 0};
     }
 
+    /**
+     * \brief           Getting memory block end (for DMA operations)
+     * \return          Iterator on the next position after memory block
+     */
     inline iterator
     mend() noexcept
     {
         return iterator{this, size_circle_end()};
     }
 
+    /**
+     * \brief           Getting memory block end (for DMA operations)
+     * \return          Iterator on the next position after memory block
+     */
     inline constexpr const_iterator
     mend() const noexcept
     {
@@ -369,6 +390,10 @@ public:
         return sizeof(data_);
     }
 
+    /**
+     * \brief           Updating head position (for DMA operations)
+     * \param[in]       head_next: new position
+     */
     void
     update_head(size_type head_next) noexcept
     {

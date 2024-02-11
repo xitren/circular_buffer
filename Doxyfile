@@ -1,0 +1,5 @@
+PROJECT_NAME            = circular_buffer
+INPUT                   = include/xitren/circular_buffer.hpp
+OUTPUT_DIRECTORY        = docs
+OPTIMIZE_OUTPUT_FOR_C   = YES
+GENERATE_LATEX          = NO
