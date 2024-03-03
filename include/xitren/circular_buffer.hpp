@@ -13,7 +13,7 @@ __ _(_) |_ _ _ ___ _ _
 #include <cstdio>
 #include <iterator>
 
-namespace xitren::containers {
+namespace xitren {
 
 /*!
 \brief Circular buffer
@@ -488,4 +488,4 @@ operator==(circular_buffer<T, Size> const& buffer, Array const& in_data)
     return res;
 }
 
-}    // namespace xitren::containers
+}    // namespace xitren

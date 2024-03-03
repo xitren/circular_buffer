@@ -6,7 +6,7 @@
 
 TEST(circullar_test, basic_push_pull)
 {
-    using namespace xitren::containers;
+    using namespace xitren;
     circular_buffer<uint8_t, 8> buffer;
     EXPECT_EQ(buffer.capacity(), 8);
 
@@ -24,7 +24,7 @@ TEST(circullar_test, basic_push_pull)
 
 TEST(circullar_test, basic_push_pull_mass)
 {
-    using namespace xitren::containers;
+    using namespace xitren;
     circular_buffer<uint8_t, 8> buffer;
     EXPECT_EQ(buffer.capacity(), 8);
 
@@ -42,7 +42,7 @@ TEST(circullar_test, basic_push_pull_mass)
 
 TEST(circullar_test, basic_push_pull_overburn)
 {
-    using namespace xitren::containers;
+    using namespace xitren;
     circular_buffer<uint8_t, 10> buffer;
     EXPECT_EQ(buffer.capacity(), 10);
 
@@ -61,7 +61,7 @@ TEST(circullar_test, basic_push_pull_overburn)
 
 TEST(circullar_test, basic_push_pull_array)
 {
-    using namespace xitren::containers;
+    using namespace xitren;
     circular_buffer<uint8_t, 10> buffer;
     EXPECT_EQ(buffer.capacity(), 10);
 
@@ -89,7 +89,7 @@ TEST(circullar_test, basic_push_pull_array)
 
 TEST(circullar_test, basic_push_pull_mass_overburn)
 {
-    using namespace xitren::containers;
+    using namespace xitren;
     circular_buffer<uint8_t, 10> buffer;
     EXPECT_EQ(buffer.capacity(), 10);
 
@@ -108,7 +108,7 @@ TEST(circullar_test, basic_push_pull_mass_overburn)
 
 TEST(circullar_test, basic_update_head)
 {
-    using namespace xitren::containers;
+    using namespace xitren;
     circular_buffer<uint8_t, 10> buffer;
     EXPECT_EQ(buffer.capacity(), 10);
     memcpy(buffer.storage(), reinterpret_cast<void const*>("abcdefghij"), 10);
@@ -136,7 +136,7 @@ TEST(circullar_test, basic_update_head)
 
 TEST(circullar_test, basic_update_head_overburn)
 {
-    using namespace xitren::containers;
+    using namespace xitren;
     circular_buffer<uint8_t, 10> buffer;
     EXPECT_EQ(buffer.capacity(), 10);
     memcpy(buffer.storage(), reinterpret_cast<uint8_t const*>("abcdefghij"), 10);
@@ -155,7 +155,7 @@ TEST(circullar_test, basic_update_head_overburn)
 
 TEST(circullar_test, basic_time_measure_push)
 {
-    using namespace xitren::containers;
+    using namespace xitren;
     circular_buffer<uint8_t, 1024> buffer;
     EXPECT_EQ(buffer.capacity(), 1024);
 
@@ -166,7 +166,7 @@ TEST(circullar_test, basic_time_measure_push)
 
 TEST(circullar_test, basic_time_measure_push_pop)
 {
-    using namespace xitren::containers;
+    using namespace xitren;
     circular_buffer<uint8_t, 1024> buffer;
     EXPECT_EQ(buffer.capacity(), 1024);
 
@@ -177,7 +177,7 @@ TEST(circullar_test, basic_time_measure_push_pop)
 }
 TEST(circullar_test, basic_boundary_test)
 {
-    using namespace xitren::containers;
+    using namespace xitren;
     circular_buffer<uint8_t, 16> buffer;
 
     for (std::size_t i = 0; i < buffer.capacity(); i++) {
